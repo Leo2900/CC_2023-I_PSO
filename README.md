@@ -3,6 +3,16 @@
   - Cázares Trejo Leonardo Damián
   - Rivera Gálvez Ernesto
 
+### Contenido
+- [Particle Swarm Optimization (PSO) paralell implementation using Julia's wraper for MPI](#particle-swarm-optimization-pso-paralell-implementation-using-julias-wraper-for-mpi)
+    - [Contenido](#contenido)
+    - [Objetivo:](#objetivo)
+    - [Modelo Secuencial](#modelo-secuencial)
+      - [Análisis de Tiempo](#análisis-de-tiempo)
+      - [Análisis de Escalabilidad](#análisis-de-escalabilidad)
+    - [Modelo Paralelizado con MPI](#modelo-paralelizado-con-mpi)
+
+
 ### Objetivo:
 - Implementar el algorítmo de optimización PSO de forma secuencial.
 - Implementar el algorítmo de optimización PSO de forma paralela.
@@ -30,3 +40,12 @@ creamos un ciclo de 10 repeticiones en el que se ejecuta el script de julia y gu
 - Una **desviación estándar** de 106.621 ms
   
 Podemos resumir que en general, el tiempo de ejecución de nuestro algorítmo secuencial es de $5128.6 \pm 208.97 \text{ms}$, resultante del promedio con un error de 1.96 veces la desviación estándar.
+
+#### Análisis de Escalabilidad
+El algorítmo puede trabajar con cualquier número de partículas deseadas, como con cualquier número de iteraciones, sin embargo, hay límites físicos, como la memoria de la computadora o el tiempo de ejecución que hay que tomar en cuenta.
+
+Al utilizar una función que puede estar definida en cualquier dimensión y haber generalizado nuestro algorítmo de optimización para trabajar en cualquier dimensión, podemos encontrar cualquier mínimo global dentro de un rango. Sin embargo, si se aumenta la dimensionalidad, recomendamos aumentar el número de partículas y de iteraciones para tener una buena aproximación, lo que produce un costo computacional muy alto y a su vez tiempos de ejecución mucho más prolongados por cada dimensión aumentada.
+
+Esto hace que el algorítmo sea escalable en el número de partículas e iteraciones, así como la dimensión con la que se quiera trabajar.
+
+### Modelo Paralelizado con MPI
